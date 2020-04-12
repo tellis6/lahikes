@@ -61,9 +61,7 @@ h1#app-name {
         </div>
     </nav> 
 
-<h1 id="app-name">
-<i class="fas fa-hiking"></i><span class="glyphicon glyphicon-hiker"></span> LA HIKES
-</h1>
+<h1 id="app-name">Login</h1>
 <form action="Login" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>

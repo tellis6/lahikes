@@ -60,8 +60,7 @@ h1#app-name {
             </ul>
         </div>
     </nav> 
-
-<h1 id="app-name">Login</h1>
+<div>Login</div>
 <form action="Login" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>

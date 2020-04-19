@@ -78,6 +78,17 @@ h2#page-header {
     padding-top:20px;
     padding-bottom:20px;
 }
+
+.file-field.medium .file-path-wrapper {
+height: 3rem; }
+.file-field.medium .file-path-wrapper .file-path {
+height: 2.8rem; }
+
+.file-field.big-2 .file-path-wrapper {
+height: 3.7rem; }
+.file-field.big-2 .file-path-wrapper .file-path {
+height: 3.5rem; }
+
 </style>
 <title>Add Trails</title>
 </head>
@@ -111,41 +122,50 @@ h2#page-header {
     </nav> 
     
     <h2 id="page-header">Add a Trail</h2>
-    <form>
+    <form class="md-form" action='AddTrails' method='post' enctype='multipart/form-data'>
   <div class="form-row">
     <div class="col-md-4 mb-3">
-      <label for="validationDefault01">First name</label>
-      <input type="text" class="form-control" id="validationDefault01" placeholder="First name" value="Mark" required>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault02">Last name</label>
-      <input type="text" class="form-control" id="validationDefault02" placeholder="Last name" value="Otto" required>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationDefaultUsername">Username</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend2">@</span>
-        </div>
-        <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Username" aria-describedby="inputGroupPrepend2" required>
-      </div>
+      <label for="validationDefault01">Trail Name</label>
+      <input type="text" class="form-control" id="validationDefault01" placeholder="i.e. Boulder Skyline Traverse" required>
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
-      <label for="validationDefault03">City</label>
-      <input type="text" class="form-control" id="validationDefault03" placeholder="City" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationDefault04">State</label>
-      <input type="text" class="form-control" id="validationDefault04" placeholder="State" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationDefault05">Zip</label>
-      <input type="text" class="form-control" id="validationDefault05" placeholder="Zip" required>
+      <label for="validationDefault02">Trail Summary</label>
+      <textarea class="form-control" id="validationDefault02" placeholder="i.e. The classic long mountain route in Boulder." required></textarea>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault03">Longitude of Trailhead</label>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Longitude" required>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationDefault04">Latitude of Trailhead</label>
+      <input type="text" class="form-control" id="validationDefault04" placeholder="Latitude" required>
+    </div>
+  </div>
+  <div class="form-row">
+  	<div class="col-md-3 mb-3">
+  		<label for="validationDefault05">Trail Length</label>
+  		<input type="text" class="form-control" id="validationDefault05" placeholder="Length in miles" required>
+  	</div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationDefault06">Trail Conditions</label>
+      <textarea class="form-control" id="validationDefault06" placeholder="i.e. Dry, Snowy, Mostly Dry, Some Mud, Icy - Spikes n poles helpful but not required" required></textarea>
+    </div>
+  </div>
+  <div class="form-row">
+  	<div class="file-field">
+    	<div class="btn btn-pink btn-rounded btn-sm float-left">
+      		<span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Choose file</span>
+      		<input type="file">
+    	</div>
+  	</div>
+  </div>
+  <div class="form-row">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
       <label class="form-check-label" for="invalidCheck2">

@@ -146,9 +146,15 @@ height: 3.5rem; }
     </div>
   </div>
   <div class="form-row">
+  	<div class="col-md-3 mb-3">
+  		<label for="validationDefault05">Trail Length</label>
+  		<input type="text" class="form-control" id="validationDefault05" placeholder="Length in miles" required>
+  	</div>
+  </div>
+  <div class="form-row">
     <div class="col-md-6 mb-3">
-      <label for="validationDefault05">Trail Conditions</label>
-      <textarea class="form-control" id="validationDefault05" placeholder="i.e. Dry, Snowy, Mostly Dry, Some Mud, Icy - Spikes n poles helpful but not required" required></textarea>
+      <label for="validationDefault06">Trail Conditions</label>
+      <textarea class="form-control" id="validationDefault06" placeholder="i.e. Dry, Snowy, Mostly Dry, Some Mud, Icy - Spikes n poles helpful but not required" required></textarea>
     </div>
   </div>
   <div class="form-row">
@@ -157,7 +163,6 @@ height: 3.5rem; }
       		<span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Choose file</span>
       		<input type="file">
     	</div>
-
   	</div>
   </div>
   <div class="form-row">

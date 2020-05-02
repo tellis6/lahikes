@@ -154,6 +154,8 @@ h2#page-header {
     	splitResults = splitResults.filter(splitResults => splitResults != "");                   
     	console.log(splitResults);
     
+    	city = city.filter(city => city != ""); 
+    	index = index.filter(index => index != ""); 
     for(var i=0; i<splitResults.length; i++) //put index and city into different arrays. Will access by same index
     {
         if(i%2==0)
@@ -226,7 +228,7 @@ h2#page-header {
 		localStorage.clear();   
     	for(var i=0; i<city.length; i++)
     	{
-    		if(i != favIndex) //include all favs except the removed one
+    		if(i != favIndex) //include all favs except the removed one          //*** does not remove the correct one sometimes
     		{
     			city[newCount] = city[i];	//update glob arrays
     			index[newCount] = index[i];
@@ -234,14 +236,15 @@ h2#page-header {
     			current = JSON.parse(localStorage.getItem('username'));
     			if(current != null) 	//place remaining favs back into the local storage
         		{
-           		 var obj = current + city[i] + ":" + i + ":";
+           		 var obj = current + city[newCount] + ":" + index[newCount] + ":";
       		 	}
         		else
         		{
-            	var obj = city[i] + ":" + i + ":";
+            	var obj = city[newCount] + ":" + index[newCount] + ":";
         		}
         
         		localStorage.setItem('username', JSON.stringify(obj)); //add trail to localstorage called username
+    			newCount = newCount + 1;
     		}
     	}
     	

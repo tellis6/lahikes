@@ -63,7 +63,7 @@ img
   {
     color: white;
     float: left;
-    width: 800px;
+    width: 1100px;
     margin-bottom: 15px;
     line-height: 20px;
     font-size: 18px;
@@ -114,6 +114,7 @@ h2#page-header {
         const data = await response.json();
         console.log(data);
         showContent(data);
+        
     }
 
     //  Outputs the Hiking data, images to webpage.
@@ -137,13 +138,12 @@ h2#page-header {
         else{
             myHTML = `Trails in \${inputLocation} <br><br>`;
         }
-        
-        
+	
         for (var i = 0; i < data.trails.length; i++) //if show error, can ignore
         {
             myHTML = myHTML + 
             `
-         <div class=infos>
+        <div class=infos>
         <p align="left">
         <a href="add.html">
         <img src = \${data.trails[i].imgSmall} onerror="this.onerror=null; this.src='noimage.jpg'" alt="No Image Yet" width="250" height="180"  hspace="20">
@@ -154,11 +154,35 @@ h2#page-header {
       	<br>Summary: \${data.trails[i].summary}
       	<br>Stars: \${data.trails[i].stars} 
       	<br>Current Condition: \${data.trails[i].conditionStatus}
+      	<br><input onclick="addFavClicked(\${i})" id='\${i}'  type="button" value ="Add to Favorites"></input>
         </p>
         </div>
             `
         }
         wrapper.innerHTML = myHTML
+    }
+    
+  	//changes the favorites button to 'added' when clicked, store clicked index and location taken as global var. To be accessed by Favorites.jsp
+    function addFavClicked(i)
+    {
+    	document.getElementById(i).value  = 'Added';
+        current = JSON.parse(localStorage.getItem('username'));
+
+        if(current != null) //current = localstorage elemts
+        {
+            var obj = current + inputLocation + ":" + i + ":";
+        }
+        else
+        {
+            var obj = inputLocation + ":" + i + ":";
+        }
+        
+        localStorage.setItem('username', JSON.stringify(obj)); //add trail to localstorage called username
+        
+        var result = JSON.parse(localStorage.getItem('username'));
+        console.log(result);
+        //localStorage.clear();
+        
     }
         
     </script>

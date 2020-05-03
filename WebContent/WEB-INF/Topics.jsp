@@ -90,7 +90,7 @@ h2#page-header {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Login">Login</a>
+                    <a class="nav-link" href="${log}">${log}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Search">Search</a>
@@ -107,7 +107,9 @@ h2#page-header {
             </ul>
         </div>
     </nav>
-	<p><h2>${forum.title}</h2></p>
+    <br />
+	<div><h2>${fName}</h2></div>
+	<div>
 	<table class="table table-bordered">
 		<thead>
 			<tr><th>Topic</th><th>Author</th><th>Replies</th><th>Last Post</th></tr>
@@ -119,8 +121,8 @@ h2#page-header {
 				</c:if>
 			</c:forEach>
 		</tbody>
-	</table><br>
-	<p><a href="<c:url value='/PostTopic?id=${param.id}' />">Post Topic</a></p>
+	</table></div><br />
+	<div><a href="<c:url value='/PostTopic?id=${param.id}' />">Post Topic</a></div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

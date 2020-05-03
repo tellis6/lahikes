@@ -90,7 +90,7 @@ h2#page-header {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Login">Login</a>
+                    <a class="nav-link" href="${log}">${log}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Search">Search</a>
@@ -107,7 +107,9 @@ h2#page-header {
             </ul>
         </div>
     </nav>
-	<p><h2><a href="<c:url value='/Topics?id=${topic.fid}' />">${forum.title}</a> > ${topic.subject}</h2></p>
+	<div><h2><a href="<c:url value='/Topics?id=${fId}' />">${fName}</a> > ${tName}</h2></div>
+	<br />
+	<div>
 	<table class="table table-bordered">
 		<thead>
 			<tr><th>Author</th><th>Content</th><th>Posted On</th></tr>
@@ -124,15 +126,9 @@ h2#page-header {
 				</c:if>
 			</c:forEach>
 		</tbody>
-	</table><br>
+	</table></div><br />
 	<form method='post'>
 	<div class="form-group">
-		<div class="form-group row">
-			<label for="name" class="col-sm-2 col-form-label">Your Name</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="name" name="name" />
-			</div>
-		</div>
 		<div class="form-group row">
 			<label for="message" class="col-sm-2 col-form-label">Reply</label>
 			<div class="col-sm-10">

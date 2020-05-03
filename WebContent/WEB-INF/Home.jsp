@@ -63,11 +63,9 @@ body #page-container {
 <body>
 <div class="container" id="page-container">
 <h1 id="app-name"><i class="fas fa-hiking"></i><span class="glyphicon glyphicon-hiker"></span> LA HIKES</h1>
-<div><c:if test="${param.user != null}"><h3 id="welcome">Welcome back ${user}</h3></c:if></div>
 <div>
 <h2 id="page-header">
-<c:if test="${param.user == null}"><a href="Login"> Login </a></c:if>
-<c:if test="${param.user != null}"><a href="Home"> Logout </a></c:if>
+<a href="${log}"> ${log} </a>
  | <a href="Search"> Search </a>
  | <a href="Favorites"> Favorites </a>
  | <a href="AddTrails"> Add Trails </a>

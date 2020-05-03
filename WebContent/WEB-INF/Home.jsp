@@ -52,9 +52,9 @@ h3#welcome {
 }
 
 body #page-container {
-    margin-top: 150px;
+    margin-top: 20px;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 </style>
 
@@ -73,7 +73,6 @@ body #page-container {
 </h2>
 </div>
 </div>
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -83,5 +82,93 @@ body #page-container {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
         integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
         crossorigin="anonymous"></script>
+        
+     <!DOCTYPE html> <!-- This whole thing is for the slideshow on home page -->
+<html>
+  <head>
+    <title>Slider</title>
+    <style>
+      .slider-container {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1200px;
+        height: 350px;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+      }
+      .slide {
+      width: 1200px;
+      height: 400px;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      z-index: 10;
+      padding: 1em 1em 0;
+      background-size: cover;
+      background-position: 50% 50%;
+      transition: left 0s 0.75s;
+      }
+      .menu {
+      position: absolute;
+      left: 0;
+      z-index: 900;
+      width: 100%;
+      bottom: 30;
+      }
+      .menu label {
+      cursor: pointer;
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50px;
+      margin: 0 0.2em 1em;
+      margin-top:25px
+      }
+      [id^="slide"]:checked + .slide {
+      left: 0;
+      z-index: 100;
+      transition: left 0.65s ease-out;
+      }
+      .slide-1 {
+      background-image: url('hollywood-hiking.jpg');
+      }
+      .slide-2 {
+      background-image: url('malibu-hiking.jpg');
+      }
+      .slide-3 {
+      background-image: url('palos-verdes-hiking.jpg');
+      }
+      .slide-4{
+        background-image: url('terranea-hiking.jpg');
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider-container">
+      <div class="menu">
+        <label for="slide-dot-1"></label>
+        <label for="slide-dot-2"></label>
+        <label for="slide-dot-3"></label>
+        <label for="slide-dot-4"></label>
+      </div>
+      <input id="slide-dot-1" type="radio" name="slides" checked>
+      <div class="slide slide-1"></div>
+      <input id="slide-dot-2" type="radio" name="slides">
+      <div class="slide slide-2"></div>
+      <input id="slide-dot-3" type="radio" name="slides">
+      <div class="slide slide-3"></div>
+      <input id="slide-dot-4" type="radio" name="slides">
+      <div class="slide slide-4"></div>
+    </div>
+    
+
+    
+  </body>
+</html>
+ 
+        
 </body>
 </html>

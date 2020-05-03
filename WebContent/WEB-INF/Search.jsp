@@ -21,6 +21,7 @@ html {
 body {
     color: white;
     background-color: transparent;
+    font-family: monospace;
 }
 
 body #page-container {
@@ -60,18 +61,25 @@ h2
   }
   
 img
-  {
+  {   
+    float: left;
+    width: 250px; 
     display: block;
-    margin-left: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    padding: 5px;
+    padding: 4px;
+   
   }
   
 .infos
   {
     color: white;
-    font-size: 30px;
+    float: left;
+    width: 1100px;
+    margin-bottom: 15px;
+    line-height: 20px;
+    font-size: 18px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   
 h2#page-header {
@@ -118,23 +126,83 @@ h2#page-header {
         const data = await response.json();
         console.log(data);
         showContent(data);
+        
     }
 
     //  Outputs the Hiking data, images to webpage.
     async function showContent(data) 
     {
         console.log('in showContent');
+        cap = inputLocation;
+        var cap = cap.toLowerCase().split(" ");
+          for(var i = 0; i< cap.length; i++)
+          {
+             cap[i] = cap[i][0].toUpperCase() + cap[i].slice(1);
+          }
+            inputLocation = (cap.join(" "));
+        
         var wrapper = document.getElementById("results");
         var myHTML = '';
-        myHTML = `<div class=infos>Trails in \${inputLocation} </div>`;
-
-        for (var i = 0; i < data.trails.length; i++) 
+        if(data.trails.length==0)
         {
+            myHTML = myHTML + `No Results for \${inputLocation}<br>`;
+        }
+        else{
+            myHTML = `Trails in \${inputLocation} <br><br>`;
+        }
+	
+        for (var i = 0; i < data.trails.length; i++) //if show error, can ignore
+        {
+<<<<<<< HEAD
         	/* var id = ${data.trails[i].name} */
         	myHTML = myHTML + 
             `<img src = \${data.trails[i].imgSmall}></img>  
             <div class=infos><a href=Result?id=\${data.trails[i].id}> \${data.trails[i].name}</a></div>`;}
         wrapper.innerHTML = myHTML
+=======
+            myHTML = myHTML + 
+            `
+        <div class=infos>
+        <p align="left">
+        <a href="add.html">
+        <img src = \${data.trails[i].imgSmall} onerror="this.onerror=null; this.src='noimage.jpg'" alt="No Image Yet" width="250" height="180"  hspace="20">
+        </a>
+        <br> Trail: \${data.trails[i].name}
+      	<br>Location: \${data.trails[i].location}
+      	<br>Miles: \${data.trails[i].length}
+      	<br>Summary: \${data.trails[i].summary}
+      	<br>Stars: \${data.trails[i].stars} 
+      	<br>Current Condition: \${data.trails[i].conditionStatus}
+      	<br><input onclick="addFavClicked(\${i})" id='\${i}'  type="button" value ="Add to Favorites"></input>
+        </p>
+        </div>
+            `
+        }
+        wrapper.innerHTML = myHTML
+    }
+    
+  	//changes the favorites button to 'added' when clicked, store clicked index and location taken as global var. To be accessed by Favorites.jsp
+    function addFavClicked(i)
+    {
+    	document.getElementById(i).value  = 'Added';
+        current = JSON.parse(localStorage.getItem('username'));
+
+        if(current != null) //current = localstorage elemts
+        {
+            var obj = current + inputLocation + ":" + i + ":";
+        }
+        else
+        {
+            var obj = inputLocation + ":" + i + ":";
+        }
+        
+        localStorage.setItem('username', JSON.stringify(obj)); //add trail to localstorage called username
+        
+        var result = JSON.parse(localStorage.getItem('username'));
+        console.log(result);
+        //localStorage.clear();
+        
+>>>>>>> df9c4a96126780f857d9f0669d9142d0f77a9db4
     }
         
     </script>

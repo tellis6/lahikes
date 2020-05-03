@@ -59,23 +59,19 @@ h1#app-name {
                 </li>
             </ul>
         </div>
-    </nav> 
-<div>Login</div>
-<form action="Login" method="post">
+    </nav> <br />
+<div><form action="Login" method="post">
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <label for="username">Username</label>
+    <input type="text" name="username" class="form-control" id="username" placeholder="Enter username">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
   </div>
-  <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Stay Logged In</label>
-  </div>
   <button type="submit" name="login" class="btn btn-secondary">Login</button>
 </form>
+</div>
 </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

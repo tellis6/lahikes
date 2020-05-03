@@ -92,7 +92,7 @@ h2#page-header {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Login">Login</a>
+                    <a class="nav-link" href="${log}">${log}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Search">Search</a>
@@ -109,6 +109,8 @@ h2#page-header {
             </ul>
         </div>
     </nav>
+    <br />
+    <div>
 	<table class="table table-bordered">
 		<thead>
 			<tr><th>Forum</th><th>Topics</th></tr>
@@ -119,6 +121,11 @@ h2#page-header {
 			</c:forEach>
 		</tbody>
 	</table>
+	</div>
+	<br />
+	<div>
+		<a href="<c:url value='/PostForum' />">Create Forum</a><br />
+	</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

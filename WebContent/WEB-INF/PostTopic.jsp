@@ -91,7 +91,7 @@ h2#page-header {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Login">Login</a>
+                    <a class="nav-link" href="${log}">${log}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Search">Search</a>
@@ -108,15 +108,11 @@ h2#page-header {
             </ul>
         </div>
     </nav>
-	<p><h2><a href="<c:url value='/Topics?id=${param.id}' />">${forum.title}</a> >Create Topic</h2></p>
+    <br />
+	<div><h2><a href="<c:url value='/Topics?id=${param.id}' />">${fName}</a> >Create Topic</h2></div>
+	<div>
 	<form action='PostTopic' method='post'>
 	<div class="form-group">
-		<div class="form-group row">
-			<label for="author" class="col-sm-2 col-form-label">Your Name</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" id="author" name="author" />
-			</div>
-		</div>
 		<div class="form-group row">
 			<label for="subject" class="col-sm-2 col-form-label">Subject</label>
 			<div class="col-sm-10">
@@ -130,10 +126,10 @@ h2#page-header {
 			</div>
 		</div>
 	</div>
-		<input type='hidden' name='id' value='${idt}' />
-		<input type='hidden' name='fid' value='${id}' />
+		<input type='hidden' name='id' value='${param.id}' />
 		<button type="submit" class="btn btn-secondary">Post</button>
 	</form>
+	</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

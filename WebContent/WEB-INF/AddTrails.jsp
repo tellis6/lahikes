@@ -103,7 +103,7 @@ height: 3.5rem; }
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Login">Login</a>
+                    <a class="nav-link" href="${log}">${log}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Search">Search</a>
@@ -126,7 +126,7 @@ height: 3.5rem; }
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">Trail Name</label>
-      <input type="text" class="form-control" id="validationDefault01" placeholder="i.e. Boulder Skyline Traverse" required>
+      <input type="text" class="form-control" id="validationDefault01" name= "name" value = "name" placeholder="i.e. Boulder Skyline Traverse" required>
     </div>
   </div>
   <div class="form-row">

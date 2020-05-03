@@ -29,6 +29,18 @@ body #page-container {
     margin-bottom: 40px;
 }
 
+a:link {
+    color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+    color: hotpink;
+}
+
 .search input[type=text] 
   {
     float: center;
@@ -118,16 +130,11 @@ h2#page-header {
 
         for (var i = 0; i < data.trails.length; i++) 
         {
-            myHTML = myHTML + 
-            `
-            <img src = \${data.trails[i].imgSmall}></img>  
-            <div class=infos>
-            \${data.trails[i].name}
-            </div>
-            `;
-        }
+        	/* var id = ${data.trails[i].name} */
+        	myHTML = myHTML + 
+            `<img src = \${data.trails[i].imgSmall}></img>  
+            <div class=infos><a href=Result?id=\${data.trails[i].id}> \${data.trails[i].name}</a></div>`;}
         wrapper.innerHTML = myHTML
-        
     }
         
     </script>
@@ -144,7 +151,7 @@ h2#page-header {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="Login">Login</a>
+                    <a class="nav-link" href="${log}">${log}</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Search">Search</a>

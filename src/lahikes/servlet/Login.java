@@ -30,8 +30,8 @@ public class Login extends HttpServlet {
 		
 		String user = request.getParameter("username");
 		String pass = request.getParameter("password");
-		String utype = "";
-		String name = "";
+		String utype = null;
+		String name = null;
 		
 		Connection c = null;
         try
@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
         if(utype != null) {
 			request.getSession().setAttribute("utype", utype);
 			request.getSession().setAttribute("name", name);
-			response.sendRedirect("Forums");
+			response.sendRedirect("Home");
 		}
 		else {
 			response.sendRedirect("Login");

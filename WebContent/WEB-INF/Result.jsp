@@ -11,6 +11,7 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Result</title>
 
 <style>
 html { 
@@ -21,6 +22,20 @@ html {
 body {
     color: white;
     background-color: transparent;
+}
+
+p {
+	color: white;
+    float: left;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h1 {
+	color: white;
+	float: center;
+	font-size: 40px;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 body #page-container {
@@ -71,7 +86,12 @@ img
 .infos
   {
     color: white;
-    font-size: 30px;
+    float: left;
+    width: 1100px;
+    margin-bottom: 15px;
+    line-height: 20px;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   
 h2#page-header {
@@ -80,42 +100,78 @@ h2#page-header {
 }
 
 </style>
-
-    <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script>
-    var inputLocation;
-    function myFunction() 
-    {
-        console.log('in myFunction');
-        inputLocation = document.getElementById("inputLocation").value;
-        getMapBoxAPI(inputLocation);
-    }
-    async function getHikingProjectAPI() 
-    {
-        console.log('in getHikes');
-        const hike_url = 'https://www.hikingproject.com/data/get-trails-by-id?ids='\${id}'&key=200686226-9f6ad20bc50f64a2ef9c71adf7a43bf8';
-        const response = await fetch(hike_url);
-        const data = await response.json();
-        console.log(data);
-        showContent(data);
-    }
-
-    //  Outputs the Hiking data, images to webpage.
-    async function showContent(data) 
-    {
-        console.log('in showContent');
-        var wrapper = document.getElementById("results");
-        var myHTML = '';
-        myHTML = `<img src = \${data.trails[0].imgSmall}></img>
-        		  <div class=infos>\${data.trails[0].name}</div>`;      
-        wrapper.innerHTML = myHTML
-    }
-        
-    </script>
+   <script>
+        async function myFunction() 
+        {
+            let response = await fetch(`https://www.hikingproject.com/data/get-trails-by-id?ids=${id}&key=200686226-9f6ad20bc50f64a2ef9c71adf7a43bf8`);
+            let data = await response.json();
+            var placeholder = document.getElementById("results");
+            var myHTML = '';
+            myHTML = myHTML + 
+            `
+            <div class="container">
+            	<div class="header mr-2">
+            		<h1>\${data.trails[0].name}</h1>
+            	</div>
+            	<br />
+            	<div class="row">    
+            		<div class="col-12 col-md-6">
+            				<img class="img-fluid" src = \${data.trails[0].imgMedium}></img>
+            		</div>
+            		<br />
+            			<div class="col-12 col-md-6">
+            				<div class= "mt-3 mr-2">
+            					<p>Location: \${data.trails[0].location}</p>
+            					<br />
+            				</div>
+            				<div class= "mt-3 mr-2">
+            					<p>Miles: \${data.trails[0].length}</p>
+            					<br />
+            				</div>
+            				<div class= "mt-3 mr-2">
+            					<p>Summary: \${data.trails[0].summary}</p>
+            					<br />
+            				</div>
+            				<div class= "mt-3 mr-2">
+        						<p>Difficulty: \${data.trails[0].difficulty}</p>
+        						<br />
+        					</div>
+            				<div class= "mt-3 mr-2">
+            					<p>Stars: \${data.trails[0].stars}</p>
+            					<br />
+            				</div>
+            				<div class= "mt-3 mr-2">
+        						<p>Votes: \${data.trails[0].starVotes}</p>
+        						<br />
+        					</div>
+        					<div class= "mt-3 mr-2">
+        						<p>Ascent: \${data.trails[0].ascent}</p>
+        						<br />
+        					</div>
+        					<div class= "mt-3 mr-2">
+        						<p>Descent: \${data.trails[0].descent}</p>
+        						<br />
+        					</div>
+            				<div class= "mt-3 mr-2">
+            					<p>Current Condition Status: \${data.trails[0].conditionStatus}</p>
+            					<br />
+            				</div>
+            				<div class= "mt-3 mr-2">
+        						<p>Current Condition Details: \${data.trails[0].conditionDetails}</p>
+        						<br />
+        					</div>
+            			</div>
+            	</div>
+            </div>
+            `;      
+            
+            placeholder.innerHTML = myHTML;
+        }       
+        </script>
 </head>
 
-<body class="container">
+<body onload="myFunction()" class="container">
 
     <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="Home"><i class="fas fa-hiking"></i> LA HIKES </a>
@@ -144,10 +200,10 @@ h2#page-header {
         </div>
     </nav>      
 <br />   
-    <div id ="displayResults">
-        <h2 id="results"></h2>
+     <div>
+        <h2><span id="results"></span></h2>
     </div>
-
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

@@ -11,6 +11,8 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Search</title>
 
 <style>
 html { 
@@ -21,7 +23,7 @@ html {
 body {
     color: white;
     background-color: transparent;
-    font-family: monospace;
+/*     font-family: monospace; */
 }
 
 body #page-container {
@@ -71,6 +73,13 @@ img
    
   }
   
+.location {
+	color: white;
+    font-size: 40px;
+    text-align: center;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+  
 .infos
   {
     color: white;
@@ -88,8 +97,6 @@ h2#page-header {
 }
 
 </style>
-
-    <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
     var inputLocation;
@@ -148,31 +155,26 @@ h2#page-header {
             myHTML = myHTML + `No Results for \${inputLocation}<br>`;
         }
         else{
-            myHTML = `Trails in \${inputLocation} <br><br>`;
+            myHTML = `<div class=location>Trails around \${inputLocation} </div><br><br>`;
         }
 	
         for (var i = 0; i < data.trails.length; i++) //if show error, can ignore
         {
-<<<<<<< HEAD
-        	/* var id = ${data.trails[i].name} */
-        	myHTML = myHTML + 
-            `<img src = \${data.trails[i].imgSmall}></img>  
-            <div class=infos><a href=Result?id=\${data.trails[i].id}> \${data.trails[i].name}</a></div>`;}
-        wrapper.innerHTML = myHTML
-=======
-            myHTML = myHTML + 
+        myHTML = myHTML + 
             `
         <div class=infos>
         <p align="left">
         <a href="add.html">
         <img src = \${data.trails[i].imgSmall} onerror="this.onerror=null; this.src='noimage.jpg'" alt="No Image Yet" width="250" height="180"  hspace="20">
         </a>
+        <a href=Result?id=\${data.trails[i].id}>
         <br> Trail: \${data.trails[i].name}
       	<br>Location: \${data.trails[i].location}
       	<br>Miles: \${data.trails[i].length}
       	<br>Summary: \${data.trails[i].summary}
       	<br>Stars: \${data.trails[i].stars} 
       	<br>Current Condition: \${data.trails[i].conditionStatus}
+      	</a>
       	<br><input onclick="addFavClicked(\${i})" id='\${i}'  type="button" value ="Add to Favorites"></input>
         </p>
         </div>
@@ -202,7 +204,6 @@ h2#page-header {
         console.log(result);
         //localStorage.clear();
         
->>>>>>> df9c4a96126780f857d9f0669d9142d0f77a9db4
     }
         
     </script>
@@ -245,7 +246,8 @@ h2#page-header {
     <button class="btn btn-secondary" onclick="myFunction()" type="submit">Search</button>
   </div>
 </div>
-    
+    <br />
+    <br />
     <div id ="displayResults">
         <h2 id="results"></h2>
     </div>

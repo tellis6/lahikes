@@ -21,7 +21,7 @@ html {
 body {
     color: white;
     background-color: transparent;
-    font-family: monospace;
+/*     font-family: monospace; */
 }
 
 a:link {

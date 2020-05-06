@@ -54,7 +54,7 @@ public class Forums extends HttpServlet {
             		"select f.id, f.name, count(t.id) "
             		+ "from lah_topics t "
             		+ "right join lah_forums f on t.forum_id = f.id "
-            		+ "group by f.name;" );
+            		+ "group by f.id;" );
 
             while( rs.next() )
                 forums.add( new Forum( rs.getInt( "f.id" ), rs.getString( "f.name" ), rs.getInt( "count(t.id)" ) ));

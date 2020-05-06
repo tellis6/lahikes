@@ -142,10 +142,18 @@ public class Replies extends HttpServlet {
             String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu82";
             String username = "cs3220stu82";
             String password = "eSkffhp3"; 
+            c = DriverManager.getConnection( url, username, password );
+            
+            String sql = "update lah_topics\n" + 
+            		"set num_of_replies = num_of_replies + 1\n" + 
+            		"where id = ?;";
+            
+            PreparedStatement pstmt = c.prepareStatement( sql );
+            pstmt.setInt( 1, id );
+            pstmt.executeUpdate();
 
             String sql2 = "insert into lah_replies (topic_id, author_id, content, timestamp) values (?, (select id from lah_users where first_name = ?), ?, now());";
-
-            c = DriverManager.getConnection( url, username, password );
+            
             PreparedStatement pstmt2 = c.prepareStatement( sql2 );
             pstmt2.setInt( 1, id );
             pstmt2.setString( 2, name );

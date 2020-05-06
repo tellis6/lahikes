@@ -132,7 +132,7 @@ h2#page-header {
 		<div class="form-group row">
 			<label for="message" class="col-sm-2 col-form-label">Reply</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" id="message" name="message"></textarea>
+				<textarea class="form-control" id="message" name="message" required></textarea>
 			</div>
 		</div>
 	</div>

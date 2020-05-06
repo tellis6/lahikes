@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +168,27 @@ h2#page-header {
             `;      
             
             placeholder.innerHTML = myHTML;
-        }       
+        }
+        
+        function showTopicForm(){
+        	var tf = document.getElementById("topicform");
+            if (tf.style.display === "none") {
+            	tf.style.display = "block";
+              } else {
+            	  tf.style.display = "none";
+              }
+            }
+        
+        function showReplyForm(){
+            var rf = document.getElementById("replyform");
+            if (rf.style.display === "none") {
+            	rf.style.display = "block";
+              } else {
+            	  rf.style.display = "none";
+              }
+            }
+
+      
         </script>
 </head>
 
@@ -203,7 +224,67 @@ h2#page-header {
      <div>
         <h2><span id="results"></span></h2>
     </div>
-    
+<br />
+
+<c:forEach items="${topics}" var="topic" >
+	<table class="table table-bordered">
+		<thead>
+			<tr><th>Author</th><th>Subject</th><th>Message</th><th>Posted On</th></tr>
+		</thead>
+		<tbody>
+			<c:if test= "${topic.fid == param.id}">
+				<tr><td>${topic.author}</td><td>${topic.subject}</td><td>${topic.content}</td><td>${topic.date}</td></tr>
+			</c:if>
+			<c:forEach items="${replies}" var="reply" >
+				<c:if test= "${reply.tid == topic.id}">
+					<tr><td>${reply.name}</td><td></td><td>${reply.message }</td><td>${reply.date}</td></tr>
+				</c:if>
+			</c:forEach>
+		</tbody>
+	</table>
+<br />	
+<br />
+	<a href="#" id="replylink" onclick="showReplyForm();">Post Reply</a>
+	<div id="replyform" style="display:none">
+	<form method='post'>
+    		<div class="form-group">
+    			<div class="form-group row">
+    				<label for="message" class="col-sm-2 col-form-label">Reply</label>
+    					<div class="col-sm-10">
+    						<textarea class="form-control" id="message" name="message" required></textarea>
+    					</div>
+    			</div>
+    		</div>			
+    			<input type='hidden' name='tid' value='${topic.id}' />
+    			<button type="submit" class="btn btn-secondary">Post</button>
+    	</form>	
+    </div>
+<br />
+<br />
+</c:forEach>
+<br />
+<br />
+	<a href="#" id="topiclink" onclick="showTopicForm();">Post Topic</a>
+	<div id="topicform" style="display:none">
+	<form method='post'>
+        	<div class="form-group">
+        		<div class="form-group row">
+        			<label for="subject" class="col-sm-2 col-form-label">Subject</label>
+        			<div class="col-sm-10">
+        				<input type="text" class="form-control" id="subject" name="subject" required/>
+        			</div>
+        		</div>
+        		<div class="form-group row">
+        			<label for="content" class="col-sm-2 col-form-label">Message</label>
+        			<div class="col-sm-10">
+        				<textarea class="form-control" id="content" name="content" rows="4" required></textarea>
+        			</div>
+        		</div>
+        	</div>
+        		<input type='hidden' name='id' value='${param.id}' />
+        		<button type="submit" class="btn btn-secondary">Post</button>
+        	</form>
+	</div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

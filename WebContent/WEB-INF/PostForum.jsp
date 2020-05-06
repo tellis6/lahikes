@@ -117,7 +117,7 @@ h2#page-header {
 		<div class="form-group row">
 			<label for="title" class="col-sm-2 col-form-label">Forum Title</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="title" name="title" />
+				<input type="text" class="form-control" id="title" name="title" required/>
 			</div>
 		</div>
 	</div>

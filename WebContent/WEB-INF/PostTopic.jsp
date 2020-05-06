@@ -116,13 +116,13 @@ h2#page-header {
 		<div class="form-group row">
 			<label for="subject" class="col-sm-2 col-form-label">Subject</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="subject" name="subject" />
+				<input type="text" class="form-control" id="subject" name="subject" required/>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="content" class="col-sm-2 col-form-label">Message</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" id="content" name="content" rows="4"></textarea>
+				<textarea class="form-control" id="content" name="content" rows="4" required></textarea>
 			</div>
 		</div>
 	</div>

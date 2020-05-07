@@ -17,6 +17,7 @@ public class Logout extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    	//end the session and route back to home page
 		request.getSession().invalidate();
 		response.sendRedirect("Home");
 		

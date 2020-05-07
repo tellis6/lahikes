@@ -21,6 +21,7 @@ public class Home extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
 		super.init( config );
 
+		//intialize jdbc driver for sql commands
         try
         {
             Class.forName( "com.mysql.jdbc.Driver" );
@@ -34,14 +35,19 @@ public class Home extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//get user session info - name and type of user (reg or admin)
 		HttpSession session = request.getSession();
         String utype = (String) session.getAttribute( "utype" );
         String log = "Login";
         
+      //Logout if there is a user type (meaning someone is logged in already)
         if( utype != null )
         	log = "Logout";
         
+      //set the log attribute to use in the jsp
         request.setAttribute( "log", log );
+        
+        //route to jsp
 		request.getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	}
 

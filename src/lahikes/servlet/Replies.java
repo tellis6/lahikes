@@ -29,27 +29,37 @@ public class Replies extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+    	//get the parameter id (will see it in the url heading "?id=...")
     	Integer id = Integer.valueOf(request.getParameter("id"));
+    	
+    	//create new topic and reply lists to put database items into them and use them in the jsp
 		List<Topic> topics = new ArrayList<Topic>();
 		List<Reply> replies = new ArrayList<Reply>();
+		
+		//these variables will be used to store the forum name and topic name as headings for the forum
 		String fName = "";
 		String tName = "";
 		int fId = 0;
 		
+		//get user session info - type of user (reg or admin)
 		HttpSession session = request.getSession();
         String utype = (String) session.getAttribute( "utype" );
         String log = "Login";
+        
+        //Logout if there is a user type (meaning someone is logged in already)
         if( utype != null )
         	log = "Logout";
 
 		Connection c = null;
         try
         {
+        	//connect to sql database with username and password
             String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu82";
             String username = "cs3220stu82";
             String password = "eSkffhp3";           
-
             c = DriverManager.getConnection( url, username, password );
+            
+            //execute sql statement to get all the info from the topics table and make list of topic objects
             String sql = 
             		"select t.id, t.subject, u.first_name, t.message, t.num_of_replies, date_format(t.last_post_time, '%m/%d/%Y %l:%i%p'), t.forum_id\n" + 
             		"    from lah_topics t \n" + 
@@ -69,6 +79,7 @@ public class Replies extends HttpServlet {
                 		rs.getString( "date_format(t.last_post_time, '%m/%d/%Y %l:%i%p')" ), 
                 		rs.getInt( "t.forum_id" )));
             
+            //this sql statement will get the reply info in order to make list of reply objects
             String sql2 = "select u.first_name, r.content, date_format(r.timestamp, '%m/%d/%Y %l:%i%p'), r.topic_id"
             		+ " from lah_replies r"
             		+ " inner join lah_topics t on r.topic_id = t.id"
@@ -85,6 +96,7 @@ public class Replies extends HttpServlet {
                 		rs2.getString( "date_format(r.timestamp, '%m/%d/%Y %l:%i%p')" ), 
                 		rs2.getInt( "r.topic_id" )));   
             
+            //finally this sql will be used to get the forum name, topic name, and forum id of the given topic to use in the jsp
             String sql3 = "select f.name, f.id, t.subject "
             		+ "from lah_forums f\n" + 
             		"inner join lah_topics t on f.id = t.forum_id\n" + 
@@ -116,34 +128,43 @@ public class Replies extends HttpServlet {
             }
         }
             
+        //we set all these attributes including our objects to be used in the jsp
         request.setAttribute( "fId", fId );
         request.setAttribute( "log", log );
         request.setAttribute( "fName", fName );
         request.setAttribute( "tName", tName );
         request.setAttribute( "topics", topics );
         request.setAttribute( "replies", replies );
+        
+        //route to the jsp
 		request.getRequestDispatcher("/WEB-INF/Replies.jsp").forward(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//get the parameter id (will see it in the url heading "?id=...")
 		Integer id = Integer.valueOf( request.getParameter( "id" ) );
+		
+		//get user session info - type of user (reg or admin)
     	HttpSession session = request.getSession();
     	String utype = (String) session.getAttribute( "utype" );
     	String name = (String) session.getAttribute( "name" );
     	
+    	//must be logged in to post replies so if user type is null then send to login page, otherwise connect to database and add reply
     	if( utype == null )
         	response.sendRedirect("Login");		
         else {
 		Connection c = null;
         try
         {
+        	//connect to sql database with username and password
             String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu82";
             String username = "cs3220stu82";
             String password = "eSkffhp3"; 
             c = DriverManager.getConnection( url, username, password );
             
+            //execute sql statement to add reply info to database using the "message" parameter from the jsp page.
             String sql = "update lah_topics\n" + 
             		"set num_of_replies = num_of_replies + 1\n" + 
             		"where id = ?;";
@@ -176,7 +197,7 @@ public class Replies extends HttpServlet {
                 throw new ServletException( e );
             }
         }
-
+        	//route back to the same page (the doGet method), keeping the id in the parameter
         	response.sendRedirect("Replies?id=" + id);	
         	
         	}

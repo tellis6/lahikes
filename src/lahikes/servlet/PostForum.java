@@ -22,17 +22,22 @@ public class PostForum extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//get user session info - name and type of user (reg or admin)
 		HttpSession session = request.getSession();
         String utype = (String) session.getAttribute( "utype" );
         String log = "Login";     
         
+        //must be logged in to post a forum. if no utype then not logged in so send to login page. otherwise the option is to "logout"
         if( utype == null )
         	request.getRequestDispatcher("/WEB-INF/Login.jsp").forward(request, response);
         else
         	log = "Logout";
 		
+        //set the attributes for the jsp page
         request.setAttribute( "log", log ); 
         request.setAttribute( "utype", utype );  
+        
+        //go to jsp page
         request.getRequestDispatcher("/WEB-INF/PostForum.jsp").forward(request, response);
 	}
 
@@ -41,13 +46,14 @@ public class PostForum extends HttpServlet {
 		Connection c = null;
         try
         {
+        	//connect to sql database with username and password
             String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu82";
             String username = "cs3220stu82";
             String password = "eSkffhp3"; 
-
-            String sql = "insert into lah_forums (name) values (?);";
-
             c = DriverManager.getConnection( url, username, password );
+            
+            //execute a sql statement that adds a new forum getting the parameter "title" from the jsp page form
+            String sql = "insert into lah_forums (name) values (?);";       
             PreparedStatement pstmt = c.prepareStatement( sql );
             pstmt.setString( 1, request.getParameter( "title" ) );
             pstmt.executeUpdate();
@@ -69,6 +75,7 @@ public class PostForum extends HttpServlet {
             }
         }
 		
+        //route to forum page
 		response.sendRedirect( "Forums");
 		
 	}

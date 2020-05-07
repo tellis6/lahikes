@@ -186,9 +186,7 @@ h2#page-header {
               } else {
             	  rf.style.display = "none";
               }
-            }
-
-      
+            }   
         </script>
 </head>
 

@@ -126,35 +126,35 @@ height: 3.5rem; }
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">Trail Name</label>
-      <input type="text" class="form-control" id="validationDefault01" name= "name" value = "name" placeholder="i.e. Boulder Skyline Traverse" required>
+      <input type="text" class="form-control" id="validationDefault01" name="trailname" value ="trailname" placeholder="i.e. Boulder Skyline Traverse" required>
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationDefault02">Trail Summary</label>
-      <textarea class="form-control" id="validationDefault02" placeholder="i.e. The classic long mountain route in Boulder." required></textarea>
+      <textarea class="form-control" id="validationDefault02" name="summary" value="summary" placeholder="i.e. The classic long mountain route in Boulder." required></textarea>
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-3 mb-3">
       <label for="validationDefault03">Longitude of Trailhead</label>
-      <input type="text" class="form-control" id="validationDefault03" placeholder="Longitude" required>
+      <input type="text" class="form-control" id="validationDefault03" name="long" value="long" placeholder="Longitude" required>
     </div>
     <div class="col-md-3 mb-3">
       <label for="validationDefault04">Latitude of Trailhead</label>
-      <input type="text" class="form-control" id="validationDefault04" placeholder="Latitude" required>
+      <input type="text" class="form-control" id="validationDefault04" name="lat" value="lat" placeholder="Latitude" required>
     </div>
   </div>
   <div class="form-row">
   	<div class="col-md-3 mb-3">
   		<label for="validationDefault05">Trail Length</label>
-  		<input type="text" class="form-control" id="validationDefault05" placeholder="Length in miles" required>
+  		<input type="text" class="form-control" id="validationDefault05" name="miles" value="miles" placeholder="Length in miles" required>
   	</div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationDefault06">Trail Conditions</label>
-      <textarea class="form-control" id="validationDefault06" placeholder="i.e. Dry, Snowy, Mostly Dry, Some Mud, Icy - Spikes n poles helpful but not required" required></textarea>
+      <textarea class="form-control" id="validationDefault06" name="condition" value="condition" placeholder="i.e. Dry, Snowy, Mostly Dry, Some Mud, Icy - Spikes n poles helpful but not required" required></textarea>
     </div>
   </div>
   <div class="form-row">

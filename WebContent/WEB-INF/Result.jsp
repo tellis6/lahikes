@@ -1,9 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- This is a tag so we can use<c:for <c:if and other tags --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <!-- This is to load the "Bootstrap" Framwork for styling the page and changing the site based on computer/phone display -->
     <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
         integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
@@ -14,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Result</title>
 
+<!--  Everything under the style here is css for adding specifications to classes, ids, background, etc... --> 
 <style>
 html { 
     background: rgb(2,0,36);
@@ -101,6 +104,8 @@ h2#page-header {
 }
 
 </style>
+
+<!-- Javascript to call the hiking project api with the trail id and get the trail info from the api -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
    <script>
         async function myFunction() 
@@ -170,6 +175,7 @@ h2#page-header {
             placeholder.innerHTML = myHTML;
         }
         
+ /*        This javascript function allows user to toggle the create topic form on and off by clicking the add topic link */
         function showTopicForm(){
         	var tf = document.getElementById("topicform");
             if (tf.style.display === "none") {
@@ -179,6 +185,7 @@ h2#page-header {
               }
             }
         
+/*  This function does the same for the create reply link */
         function showReplyForm(){
             var rf = document.getElementById("replyform");
             if (rf.style.display === "none") {
@@ -190,8 +197,9 @@ h2#page-header {
         </script>
 </head>
 
-<body onload="myFunction()" class="container">
+<body onload="myFunction()" class="container"> <!-- load the function to get hike info upon loading of the web page -->
 
+<!-- This is the navbar with the little image "i" giphy from the fontAwesome website along with the nav setup-->
     <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="Home"><i class="fas fa-hiking"></i> LA HIKES </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -220,10 +228,11 @@ h2#page-header {
     </nav>      
 <br />   
      <div>
+     <!-- This is where the trail info will show up -->
         <h2><span id="results"></span></h2>
     </div>
 <br />
-
+<!-- This will display all the topics objects from the java servlet -->
 <c:forEach items="${topics}" var="topic" >
 	<table class="table table-bordered">
 		<thead>
@@ -242,6 +251,7 @@ h2#page-header {
 	</table>
 <br />	
 <br />
+<!-- This link calls the javascript function to toggle the form on and off -->
 	<a href="#" id="replylink" onclick="showReplyForm();">Post Reply</a>
 	<div id="replyform" style="display:none">
 	<form method='post'>
@@ -253,7 +263,7 @@ h2#page-header {
     					</div>
     			</div>
     		</div>			
-    			<input type='hidden' name='tid' value='${topic.id}' />
+    			<input type='hidden' name='tid' value='${topic.id}' /> <!-- Hidden field here so we can reference the id in the java servlet -->
     			<button type="submit" class="btn btn-secondary">Post</button>
     	</form>	
     </div>
@@ -262,6 +272,8 @@ h2#page-header {
 </c:forEach>
 <br />
 <br />
+
+<!-- This link calls the javascript function to toggle the form on and off -->
 	<a href="#" id="topiclink" onclick="showTopicForm();">Post Topic</a>
 	<div id="topicform" style="display:none">
 	<form method='post'>
@@ -279,10 +291,12 @@ h2#page-header {
         			</div>
         		</div>
         	</div>
-        		<input type='hidden' name='id' value='${param.id}' />
+        		<input type='hidden' name='id' value='${param.id}' /> <!-- Hidden field here so we can reference the id in the java servlet -->
         		<button type="submit" class="btn btn-secondary">Post</button>
         	</form>
 	</div>
+	
+	    <!-- 	these scripts are for bootstrap as well -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

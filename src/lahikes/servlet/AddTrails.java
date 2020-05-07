@@ -26,7 +26,7 @@ public class AddTrails extends HttpServlet {
         
         //Logout if there is a user type (meaning someone is logged in already)
         if( utype != null )
-        	log = "Logout";
+        	log = "Logout";      
         
         //set the log attribute to use in the jsp
         request.setAttribute( "log", log );
@@ -35,6 +35,9 @@ public class AddTrails extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/AddTrails.jsp").forward(request, response);
 	}
 
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//TODO: connect to sql database and add all the trail info from the jsp form into a table
+	}
 
 }

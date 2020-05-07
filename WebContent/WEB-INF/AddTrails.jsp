@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- This is to load the "Bootstrap" Framwork for styling the page and changing the site based on computer/phone display -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"
@@ -12,6 +13,7 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
         
+<!--  Everything under the style here is css for adding specifications to classes, ids, background, etc... -->
 <style>
 html { 
     background: rgb(2,0,36);
@@ -93,7 +95,7 @@ height: 3.5rem; }
 <title>Add Trails</title>
 </head>
 <body class="container">
-
+	<!-- This is the navbar at the top -->
     <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="Home"><i class="fas fa-hiking"></i> LA HIKES </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -121,6 +123,7 @@ height: 3.5rem; }
         </div>
     </nav> 
     
+<!--     This will begin the form to send all input back to the post method of the java servlet, there we should add the data to a database table -->
     <h2 id="page-header">Add a Trail</h2>
     <form class="md-form" action='AddTrails' method='post' enctype='multipart/form-data'>
   <div class="form-row">

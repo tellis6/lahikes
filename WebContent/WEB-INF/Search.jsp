@@ -1,8 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- This is a tag so we can use<c:for <c:if and other tags --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <!-- This is to load the "Bootstrap" Framwork for styling the page and changing the site based on computer/phone display -->
     <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
         integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
@@ -14,6 +17,7 @@
     
     <title>Search</title>
 
+<!--  Everything under the style here is css for adding specifications to classes, ids, background, etc... --> 
 <style>
 html { 
     background: rgb(2,0,36);
@@ -211,6 +215,7 @@ h2#page-header {
 
 <body class="container">
 
+<!-- This is the navbar with the little image "i" giphy from the fontAwesome website along with the nav setup-->
     <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="Home"><i class="fas fa-hiking"></i> LA HIKES </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -252,6 +257,7 @@ h2#page-header {
         <h2 id="results"></h2>
     </div>
 
+<!-- 	these scripts are for bootstrap as well -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

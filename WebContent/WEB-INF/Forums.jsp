@@ -1,9 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- This is a tag so we can use<c:for <c:if and other tags --%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- This is to load the "Bootstrap" Framwork for styling the page and changing the site based on computer/phone display -->
     <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css"
         integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
@@ -11,7 +13,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
-        
+        <!--  Everything under the style here is css for adding specifications to classes, ids, background, etc... -->  
 <style>
 html { 
     background: rgb(2,0,36);
@@ -83,6 +85,8 @@ h2#page-header {
     <title>Forum</title>
 </head>
 <body class="container">
+
+<!-- This is the navbar with the little image "i" giphy from the fontAwesome website along with the nav setup-->
 <nav class="navbar navbar-expand-md navbar-dark">
         <a class="navbar-brand" href="Home"><i class="fas fa-hiking"></i> LA HIKES </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -111,12 +115,15 @@ h2#page-header {
     </nav>
     <br />
     <div>
+    
+<!--     This is the forum table  -->
 	<table class="table table-bordered">
 		<thead>
 			<tr><th>Forum</th><th>Topics</th></tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${forums}" var="forum" >
+<!-- 		for each forum object print the title (as a link) and the number of topics inside -->
+			<c:forEach items="${forums}" var="forum" > 
 				<tr><td><a href="<c:url value='/Topics?id=${forum.id}' />">${forum.title}</a></td><td>${forum.topicCount}</td></tr>
 			</c:forEach>
 		</tbody>
@@ -124,8 +131,11 @@ h2#page-header {
 	</div>
 	<br />
 	<div>
+<!-- 	Create a forum (will send to the post forums java servlet) -->
 		<a href="<c:url value='/PostForum' />">Create Forum</a><br />
 	</div>
+	
+<!-- 	these scripts are for bootstrap as well -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

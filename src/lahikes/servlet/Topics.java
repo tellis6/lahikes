@@ -28,24 +28,34 @@ public class Topics extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+    	//get user session info - name and type of user (reg or admin)
     	HttpSession session = request.getSession();
         String utype = (String) session.getAttribute( "utype" );
         String log = "Login";
+        
+        //Logout if there is a user type (meaning someone is logged in already)
         if( utype != null )
         	log = "Logout";
         
+        //get the parameter id (will see it in the url heading "?id=...")
 		Integer id = Integer.valueOf(request.getParameter("id"));
+		
+		//Create a Topic list to store database info into and display in the jsp page
 		List<Topic> topics = new ArrayList<Topic>();
+		
+		//this variable will be used as a heading in the jsp page so users can see what forum they are in
 		String fName = "";
 		
         Connection c = null;
         try
         {
+        	//Connect to sql databasse with username and password
             String url = "jdbc:mysql://cs3.calstatela.edu/cs3220stu82";
             String username = "cs3220stu82";
             String password = "eSkffhp3";           
-
             c = DriverManager.getConnection( url, username, password );
+            
+            //sql command to get all database info from topics table to create list of Topic objects to send to jsp page
             String sql = 
             		"select t.id, t.subject, u.first_name, t.message, t.num_of_replies, date_format(t.last_post_time, '%m/%d/%Y %l:%i%p'), t.forum_id\n" + 
             		"    from lah_topics t \n" + 
@@ -55,6 +65,7 @@ public class Topics extends HttpServlet {
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
 
+            //here we load all the info into a list of topics
             while( rs.next() ) 
                 topics.add( new Topic( 
                 		rs.getInt( "t.id" ), 
@@ -65,12 +76,14 @@ public class Topics extends HttpServlet {
                 		rs.getString( "date_format(t.last_post_time, '%m/%d/%Y %l:%i%p')" ), 
                 		rs.getInt( "t.forum_id" )));   
             
+            //sql command to get the name of the forum the topic is under so we can display at the top of the page
             String sql2 = "select name from lah_forums\n" + 
             		"where id = ?;";
             PreparedStatement pstmt2 = c.prepareStatement( sql2 );
             pstmt2.setInt(1, id);
             ResultSet rs2 = pstmt2.executeQuery();
 
+            //load the forum name into the fName variable
             while( rs2.next() ) 
             	fName = rs2.getString( "name" );
             
@@ -91,16 +104,16 @@ public class Topics extends HttpServlet {
             }
         }
                
+        //set all of our attributes to be sent over to the jsp page including our topics object list
         request.setAttribute( "log", log );
         request.setAttribute( "utype", utype );
         request.setAttribute( "fName", fName );       
         request.setAttribute( "topics", topics );
+        
+        //route to the jsp page
 		request.getRequestDispatcher("/WEB-INF/Topics.jsp").forward(request, response);
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
 
 }

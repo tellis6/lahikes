@@ -166,6 +166,8 @@ h2#page-header {
         {
         myHTML = myHTML + 
             `
+        <div class="container">
+        <div class="row">   
         <div class=infos>
         <p align="left">
         <a href="add.html">
@@ -181,6 +183,8 @@ h2#page-header {
       	</a>
       	<br><input onclick="addFavClicked(\${i})" id='\${i}'  type="button" value ="Add to Favorites"></input>
         </p>
+        </div>
+        </div>
         </div>
             `
         }

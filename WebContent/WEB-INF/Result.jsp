@@ -112,6 +112,8 @@ h2#page-header {
         {
             let response = await fetch(`https://www.hikingproject.com/data/get-trails-by-id?ids=${id}&key=200686226-9f6ad20bc50f64a2ef9c71adf7a43bf8`);
             let data = await response.json();
+            var i = 100;
+            var inputLocation
             var placeholder = document.getElementById("results");
             var myHTML = '';
             myHTML = myHTML + 
@@ -132,47 +134,56 @@ h2#page-header {
             					<br />
             				</div>
             				<div class= "mt-3 mr-2">
-            					<p>Miles: \${data.trails[0].length}</p>
-            					<br />
-            				</div>
-            				<div class= "mt-3 mr-2">
             					<p>Summary: \${data.trails[0].summary}</p>
             					<br />
             				</div>
-            				<div class= "mt-3 mr-2">
-        						<p>Difficulty: \${data.trails[0].difficulty}</p>
-        						<br />
-        					</div>
-            				<div class= "mt-3 mr-2">
-            					<p>Stars: \${data.trails[0].stars}</p>
+            				<div class= "mt-3 mr-2">         					
+            					<p>Length: \${data.trails[0].length} miles  |  Ascent: \${data.trails[0].ascent} ft.  |  Descent: \${data.trails[0].descent} ft.</p>
             					<br />
             				</div>
             				<div class= "mt-3 mr-2">
-        						<p>Votes: \${data.trails[0].starVotes}</p>
-        						<br />
-        					</div>
-        					<div class= "mt-3 mr-2">
-        						<p>Ascent: \${data.trails[0].ascent}</p>
-        						<br />
-        					</div>
-        					<div class= "mt-3 mr-2">
-        						<p>Descent: \${data.trails[0].descent}</p>
+        						<p>Difficulty: \${data.trails[0].difficulty}  |  Rating: \${data.trails[0].stars} stars  |  Vote Total: \${data.trails[0].starVotes} votes</p>
         						<br />
         					</div>
             				<div class= "mt-3 mr-2">
-            					<p>Current Condition Status: \${data.trails[0].conditionStatus}</p>
+            					<p>Current Condition Status: \${data.trails[0].conditionStatus}  |  Details: \${data.trails[0].conditionDetails}</p>
             					<br />
             				</div>
             				<div class= "mt-3 mr-2">
-        						<p>Current Condition Details: \${data.trails[0].conditionDetails}</p>
-        						<br />
+        					<p><span style="text-decoration:underline"><b><a href=\${data.trails[0].url}>Check out the Hiking Project for more information</a></b></span></p>
+        					<br />
         					</div>
+        					<div class= "mt-3 mr-2">
+        					<p><span style="text-allign:center"><input onclick="addFavClicked(\${i})" id='\${i}' type="button" value ="Add to Favorites"></input></span></p>
+        					<br />
+        				</div>
             			</div>
             	</div>
             </div>
             `;      
             
             placeholder.innerHTML = myHTML;
+        }
+        
+        function addFavClicked(i)
+        {
+        	document.getElementById(i).value  = 'Added';
+            current = JSON.parse(localStorage.getItem('username'));
+
+            if(current != null) //current = localstorage elemts
+            {
+                var obj = current + ":" + i + ":";
+            }
+            else
+            {
+                var obj = inputLocation + ":" + i + ":";
+            }
+            
+            localStorage.setItem('username', JSON.stringify(obj)); //add trail to localstorage called username
+            
+            var result = JSON.parse(localStorage.getItem('username'));
+            console.log(result);
+            //localStorage.clear();          
         }
         
  /*        This javascript function allows user to toggle the create topic form on and off by clicking the add topic link */

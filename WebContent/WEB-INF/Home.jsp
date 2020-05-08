@@ -59,42 +59,8 @@ body #page-container {
     text-align: center;
     margin-bottom: 20px;
 }
-</style>
 
-<title>Home</title>
-</head>
-<body>
-
-<!-- This is logo, glyphicon image from fontAwesome's website and the links. the "log" variable we brought in from the java servlet -->
-<div class="container" id="page-container">
-<h1 id="app-name"><i class="fas fa-hiking"></i><span class="glyphicon glyphicon-hiker"></span> LA HIKES</h1>
-<div>
-<h2 id="page-header">
-<a href="${log}"> ${log} </a>
- | <a href="Search"> Search </a>
- | <a href="Favorites"> Favorites </a>
- | <a href="AddTrails"> Add Trails </a>
- | <a href="Forums"> Forum </a>
-</h2>
-</div>
-</div>
-    <!-- 	these scripts are for bootstrap as well -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
-        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-        crossorigin="anonymous"></script>
-        
-     <!DOCTYPE html> <!-- This whole thing is for the slideshow on home page -->
-<html>
-  <head>
-    <title>Slider</title>
-    <style>
-      .slider-container {
+.slider-container {
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -150,9 +116,28 @@ body #page-container {
       .slide-4{
         background-image: url('terranea-hiking.jpg');
       }
-    </style>
-  </head>
-  <body>
+</style>
+
+<title>Home</title>
+</head>
+<body>
+
+<!-- This is logo, glyphicon image from fontAwesome's website and the links. the "log" variable we brought in from the java servlet -->
+<div class="container" id="page-container">
+<h1 id="app-name"><i class="fas fa-hiking"></i><span class="glyphicon glyphicon-hiker"></span> LA HIKES</h1>
+<div>
+<h2 id="page-header">
+<a href="${log}"> ${log} </a>
+ | <a href="Search"> Search </a>
+ | <a href="Favorites"> Favorites </a>
+ | <a href="AddTrails"> Add Trails </a>
+ | <a href="Forums"> Forum </a>
+</h2>
+</div>
+</div>
+
+<!-- This is the slide show -->
+    <div class="row">
     <div class="slider-container">
       <div class="menu">
         <label for="slide-dot-1"></label>
@@ -169,12 +154,18 @@ body #page-container {
       <input id="slide-dot-4" type="radio" name="slides">
       <div class="slide slide-4"></div>
     </div>
+    </div>
     
 
-    
-  </body>
-</html>
- 
-        
-</body>
+    <!-- 	these scripts are for bootstrap as well -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
+        integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+ </body>
 </html>

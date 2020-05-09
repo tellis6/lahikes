@@ -23,31 +23,25 @@ html {
     background: rgb(2,0,36);
 	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(38,38,138,1) 0%, rgba(52,74,156,1) 12%, rgba(0,212,255,1) 100%, rgba(0,212,255,1) 100%);
 }
-
 body {
     color: white;
     background-color: transparent;
 /*     font-family: monospace; */
 }
-
 body #page-container {
     margin-top: 150px;
     text-align: center;
     margin-bottom: 40px;
 }
-
 a:link {
     color: white;
 }
-
 a:visited {
   color: white;
 }
-
 a:hover {
     color: hotpink;
 }
-
 .search input[type=text] 
   {
     float: center;
@@ -83,7 +77,7 @@ img
     text-align: center;
 	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
-  
+
 .infos
   {
     color: white;
@@ -99,7 +93,6 @@ h2#page-header {
     padding-top:20px;
     padding-bottom:20px;
 }
-
 </style>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
@@ -125,7 +118,6 @@ h2#page-header {
         console.log(data.features[0].center[0]);
         getHikingProjectAPI(lon, lat);
     }
-
     /*  Gets long & lat from Map API, send to Hiking API, store the fetched data
         Currently only limited to 10 results
     */
@@ -139,7 +131,6 @@ h2#page-header {
         showContent(data);
         
     }
-
     //  Outputs the Hiking data, images to webpage.
     async function showContent(data) 
     {
@@ -167,13 +158,11 @@ h2#page-header {
         myHTML = myHTML + 
             `
         <div class="container">
-        <div class="row">   
+        <div class="row" id = "index">   
         <div class=infos>
         <p align="left">
-        <a href="add.html">
+        <a href="Result?id=\${data.trails[i].id}" onclick = "setIndex(\${i})">
         <img src = \${data.trails[i].imgSmall} onerror="this.onerror=null; this.src='noimage.jpg'" alt="No Image Yet" width="250" height="180"  hspace="20">
-        </a>
-        <a href=Result?id=\${data.trails[i].id}>
         <br> Trail: \${data.trails[i].name}
       	<br>Location: \${data.trails[i].location}
       	<br>Miles: \${data.trails[i].length}
@@ -184,11 +173,19 @@ h2#page-header {
       	<br><input onclick="addFavClicked(\${i})" id='\${i}'  type="button" value ="Add to Favorites"></input>
         </p>
         </div>
-        </div>
+        </div> 
         </div>
             `
         }
         wrapper.innerHTML = myHTML
+    }
+    /* When the result page is called, the onclick will call this function to set the index & location of the hike clicked,
+       store it in the localstorage and access it in Result.jsp to set favorites if button is clicked there
+	*/
+    function setIndex(i)
+    {
+      	localStorage.setItem('index', i);
+      	localStorage.setItem('inputLocation', inputLocation);
     }
     
   	//changes the favorites button to 'added' when clicked, store clicked index and location taken as global var. To be accessed by Favorites.jsp
@@ -196,7 +193,6 @@ h2#page-header {
     {
     	document.getElementById(i).value  = 'Added';
         current = JSON.parse(localStorage.getItem('username'));
-
         if(current != null) //current = localstorage elemts
         {
             var obj = current + inputLocation + ":" + i + ":";

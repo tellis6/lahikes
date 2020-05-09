@@ -14,6 +14,10 @@
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
         crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
 <title>Result</title>
 
 <!--  Everything under the style here is css for adding specifications to classes, ids, background, etc... --> 
@@ -31,6 +35,7 @@ body {
 p {
 	color: white;
     float: left;
+    text-allign: left;
     font-size: 20px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -87,6 +92,12 @@ img
     padding: 5px;
   }
   
+iframe
+{
+width: 1000px;
+height: 400px;
+} 
+  
 .infos
   {
     color: white;
@@ -108,11 +119,15 @@ h2#page-header {
 <!-- Javascript to call the hiking project api with the trail id and get the trail info from the api -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
    <script>
+   var i = localStorage.getItem('index');
+  	console.log(i);
+	var inputLocation = localStorage.getItem('inputLocation');
+
         async function myFunction() 
         {
             let response = await fetch(`https://www.hikingproject.com/data/get-trails-by-id?ids=${id}&key=200686226-9f6ad20bc50f64a2ef9c71adf7a43bf8`);
             let data = await response.json();
-            var i = 100;
+            var i = localStorage.getItem('index');
             var inputLocation
             var placeholder = document.getElementById("results");
             var myHTML = '';
@@ -154,37 +169,50 @@ h2#page-header {
         					<br />
         					</div>
         					<div class= "mt-3 mr-2">
-        					<p><span style="text-allign:center"><input onclick="addFavClicked(\${i})" id='\${i}' type="button" value ="Add to Favorites"></input></span></p>
+        					<p><span style="text-allign:center"><input onclick="addFavClicked()" id="0" type="button" value ="Add to Favorites"></input></span></p>
         					<br />
         				</div>
-            			</div>
+
+            	</div>   
+            	<div class="row"> 
+            		<div class="col-12 col-md-6">
+            			<div class= "mt-3 mr-2">
+							<iframe class="embed-responsive-item"
+            	  			src='https://api.mapbox.com/styles/v1/mapbox/streets-v11.html?title=false&zoomwheel=true&access_token=pk.eyJ1Ijoic2lua3RoZXR1cnRsZSIsImEiOiJjazl4ajluOHowM2dsM2ZydGY3d25xOWd5In0.-jXDAQsfT-pLZwRxrcOdeQ#15/\${data.trails[0].latitude}/\${data.trails[0].longitude}' />
+            			</div> 
+            			<br />
+            		</div>
             	</div>
             </div>
             `;      
             
             placeholder.innerHTML = myHTML;
         }
+       
         
-        function addFavClicked(i)
+        function addFavClicked()
         {
-        	document.getElementById(i).value  = 'Added';
+        	//console.log("HERE " + i);
+        	//console.log("input " + inputLocation);
+        	document.getElementById(0).value  = 'Added';
             current = JSON.parse(localStorage.getItem('username'));
-
+            console.log("current " + current);
             if(current != null) //current = localstorage elemts
             {
-                var obj = current + ":" + i + ":";
+                var obj = current + inputLocation + ":" + i + ":";
+                console.log("first");
             }
             else
             {
                 var obj = inputLocation + ":" + i + ":";
+                console.log("sec");
             }
-            
             localStorage.setItem('username', JSON.stringify(obj)); //add trail to localstorage called username
             
             var result = JSON.parse(localStorage.getItem('username'));
-            console.log(result);
-            //localStorage.clear();          
+            console.log(result);        
         }
+
         
  /*        This javascript function allows user to toggle the create topic form on and off by clicking the add topic link */
         function showTopicForm(){
@@ -243,6 +271,8 @@ h2#page-header {
         <h2><span id="results"></span></h2>
     </div>
 <br />
+<br />
+
 <!-- This will display all the topics objects from the java servlet -->
 <c:forEach items="${topics}" var="topic" >
 	<table class="table table-bordered">
@@ -262,6 +292,7 @@ h2#page-header {
 	</table>
 <br />	
 <br />
+
 <!-- This link calls the javascript function to toggle the form on and off -->
 	<a href="#" id="replylink" onclick="showReplyForm();">Post Reply</a>
 	<div id="replyform" style="display:none">
@@ -279,9 +310,7 @@ h2#page-header {
     	</form>	
     </div>
 <br />
-<br />
 </c:forEach>
-<br />
 <br />
 
 <!-- This link calls the javascript function to toggle the form on and off -->
@@ -306,7 +335,8 @@ h2#page-header {
         		<button type="submit" class="btn btn-secondary">Post</button>
         	</form>
 	</div>
-	
+	<br />
+	<br />
 	    <!-- 	these scripts are for bootstrap as well -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

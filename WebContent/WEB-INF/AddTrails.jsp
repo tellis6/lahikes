@@ -81,16 +81,6 @@ h2#page-header {
     padding-bottom:20px;
 }
 
-.file-field.medium .file-path-wrapper {
-height: 3rem; }
-.file-field.medium .file-path-wrapper .file-path {
-height: 2.8rem; }
-
-.file-field.big-2 .file-path-wrapper {
-height: 3.7rem; }
-.file-field.big-2 .file-path-wrapper .file-path {
-height: 3.5rem; }
-
 </style>
 <title>Add Trails</title>
 </head>
@@ -164,7 +154,7 @@ height: 3.5rem; }
   	<div class="file-field">
     	<div class="btn btn-pink btn-rounded btn-sm float-left">
       		<span><i class="fas fa-upload mr-2" aria-hidden="true"></i>Choose file</span>
-      		<input type="file">
+      		<input type="file" name="image" size="50">
     	</div>
   	</div>
   </div>
